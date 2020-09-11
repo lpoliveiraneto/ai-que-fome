@@ -38,7 +38,7 @@ public class UsuarioResource {
     }
     */
     @PostMapping("/usuarios")
-    public ResponseEntity<Usuario> save(@RequestBody final Usuario usuario){
+    public ResponseEntity<Usuario> save(@RequestBody Usuario usuario){
         Usuario usuarioSave = usuarioRepository.save(usuario);
         return new ResponseEntity<>(usuarioSave, HttpStatus.CREATED);
     }
