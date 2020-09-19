@@ -4,6 +4,7 @@ import br.com.aiquefome.aiquefome.domain.exceptions.CozinhaNotFoundException;
 import br.com.aiquefome.aiquefome.domain.models.Cozinha;
 import br.com.aiquefome.aiquefome.domain.repositoreis.CozinhaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,11 @@ public class CadastroCozinhaService {
     }
 
     public void deletar(Long cozinhaId) {
-        cozinhaRepository.deleteById(cozinhaId);
+        try {
+            cozinhaRepository.deleteById(cozinhaId);
+        } catch (EmptyResultDataAccessException exception) {
+            throw new CozinhaNotFoundException(String.format("Não foi entrada uma cozinha com o ID: %d", cozinhaId));
+        }
     }
 
     public Cozinha atualizar(Cozinha cozinha) {

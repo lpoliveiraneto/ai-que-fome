@@ -1,4 +1,4 @@
-package br.com.aiquefome.aiquefome.resource;
+package br.com.aiquefome.aiquefome.api.resource;
 
 import br.com.aiquefome.aiquefome.domain.services.CadastroCozinhaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,40 +7,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import br.com.aiquefome.aiquefome.domain.models.Cozinha;
-import br.com.aiquefome.aiquefome.domain.exceptions.CozinhaNotFoundException;
-import br.com.aiquefome.aiquefome.domain.repositoreis.CozinhaRepository;
 
+import br.com.aiquefome.aiquefome.domain.models.Cozinha;
+
+@RequestMapping("/cozinhas")
 @RestController
 public class CozinhaResource {
 
     @Autowired
     private CadastroCozinhaService cadastroCozinhaService;
 
-    @GetMapping("/cozinhas")
+    @GetMapping
     public List<Cozinha> retrieveAllCozinha(){
         return cadastroCozinhaService.listaTodas();
     }
 
-    @PostMapping("/cozinhas")
+    @PostMapping
     public ResponseEntity<Cozinha> save(@RequestBody Cozinha cozinha){
         Cozinha cozinhaSave = cadastroCozinhaService.salvar(cozinha);
         return new ResponseEntity<>(cozinhaSave, HttpStatus.CREATED);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/cozinhas/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         cadastroCozinhaService.deletar(id);
     }
 
-    @GetMapping("/cozinhas/{id}")
+    @GetMapping("/{id}")
     public Cozinha retrieveCozinha(@PathVariable Long id){
         return cadastroCozinhaService.buscarOrFalhar(id);
     }
 
-    @PutMapping("/cozinhas/{id}")
+    @PutMapping("/{id}")
     public Cozinha update(@PathVariable Long id, @RequestBody Cozinha newCozinha){
         newCozinha.setId(id);
         return cadastroCozinhaService.atualizar(newCozinha);
