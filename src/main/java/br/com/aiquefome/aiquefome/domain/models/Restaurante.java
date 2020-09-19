@@ -1,4 +1,4 @@
-package br.com.aiquefome.aiquefome.models;
+package br.com.aiquefome.aiquefome.domain.models;
 
 import java.math.BigDecimal;
 

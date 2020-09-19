@@ -1,6 +1,5 @@
 package br.com.aiquefome.aiquefome.resource;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import br.com.aiquefome.aiquefome.repositoreis.UsuarioRepository;
-import br.com.aiquefome.aiquefome.models.Usuario;
-import br.com.aiquefome.aiquefome.models.UsuarioNotFoundException;
+import br.com.aiquefome.aiquefome.domain.repositoreis.UsuarioRepository;
+import br.com.aiquefome.aiquefome.domain.models.Usuario;
+import br.com.aiquefome.aiquefome.domain.exceptions.UsuarioNotFoundException;
 
 @RestController
 public class UsuarioResource {
