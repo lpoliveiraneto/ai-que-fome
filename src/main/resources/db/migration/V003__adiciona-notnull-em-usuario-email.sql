@@ -1,0 +1,1 @@
+alter table usuario modify email varchar(200) unique not null;

@@ -1,5 +1,8 @@
 package br.com.aiquefome.aiquefome.domain.models;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -11,9 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Data
 @Entity
 public class Restaurante {
-    
+
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,64 +39,4 @@ public class Restaurante {
     @ManyToOne
     @JoinColumn(name = "cozinha_id")
     private Cozinha cozinha;
-
-    public Restaurante(){}
-
-    public Restaurante(String nome, BigDecimal taxaFrete, boolean ativo, boolean aberto, Cozinha cozinha){
-        this.nome = nome;
-        this.taxaFrete = taxaFrete;
-        this.ativo = ativo;
-        this.aberto = aberto;
-        this.cozinha = cozinha;
-    }
-
-    public Long getId(){
-        return id;
-    }
-
-    public void setId(Long id){
-        this.id = id;
-    }
-
-    public String getNome(){
-        return nome;
-    }
-
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-
-    public BigDecimal getTaxaFrete(){
-        return taxaFrete;
-    }
-
-    public void setTaxaFrete(BigDecimal taxaFrete){
-        this.taxaFrete = taxaFrete;
-    }
-
-    public boolean getAtivo(){
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo){
-        this.ativo = ativo;
-    }
-
-    public boolean getAberto(){
-        return aberto;
-    }
-
-    public void setAberto(boolean aberto){
-        this.aberto = aberto;
-    }
-
-    public Cozinha getCozinha(){
-        return cozinha;
-    }
-
-    public void setCozinha(Cozinha cozinha){
-        this.cozinha = cozinha;
-    }
-
-
 }
