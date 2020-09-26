@@ -1,4 +1,4 @@
-package br.com.aiquefome.aiquefome.resource;
+package br.com.aiquefome.aiquefome.api.resource;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

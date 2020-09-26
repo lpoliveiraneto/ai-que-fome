@@ -1,4 +1,4 @@
-package br.com.aiquefome.aiquefome.models;
+package br.com.aiquefome.aiquefome.domain.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +15,8 @@ public class Cozinha {
 
     @Column(name = "nome")
     private String nome;
+
+    public Cozinha(){}
 
     public Cozinha(String nome, Long id){
         this.id = id;
