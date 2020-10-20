@@ -1,11 +1,12 @@
 package br.com.aiquefome.aiquefome.domain.models;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,21 +14,19 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
 @Entity
-public class Usuario {
-    
-    @EqualsAndHashCode.Include
+public class Cidade {
+
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cidade")
     private Long id;
 
     @Column(name = "nome")
     private String nome;
 
-    @Column(name = "email")
-    private String email;
+    @ManyToOne
+    @JoinColumn(name = "id_estado")
+    private Estado estado;
 
-    @Column(name = "senha")
-    private String senha;
-
+  //  public Cidade(){}
 }

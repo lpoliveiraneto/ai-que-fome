@@ -38,7 +38,7 @@ public class CadastroUsuarioService {
         usuarioAtual.setNome(usuario.getNome());
         usuarioAtual.setEmail(usuario.getEmail());
         usuarioAtual.setSenha(usuario.getSenha());
-        return salvar(usuario);
+        return salvar(usuarioAtual);
     }
 
     public Usuario buscarOrFalhar(Long usuarioID){

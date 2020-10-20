@@ -36,7 +36,7 @@ public class CadastroCozinhaService {
     public Cozinha atualizar(Cozinha cozinha){
         Cozinha cozinhaAtual = buscarOrFalhar(cozinha.getId());
         cozinhaAtual.setNome(cozinha.getNome());
-        return salvar(cozinha);
+        return salvar(cozinhaAtual);
     }
 
     public Cozinha buscarOrFalhar(Long cozinhaID){
