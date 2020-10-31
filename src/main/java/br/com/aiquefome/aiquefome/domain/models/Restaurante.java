@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,7 +19,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @Entity
 public class Restaurante {
-    
+
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +34,6 @@ public class Restaurante {
 
     @Column(name = "ativo")
     private boolean ativo;
-
-    @Transient
-    private boolean aberto;
 
     @ManyToOne
     @JoinColumn(name = "id_cozinha")

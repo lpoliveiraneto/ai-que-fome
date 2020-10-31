@@ -2,6 +2,11 @@ package br.com.aiquefome.aiquefome.api.resource;
 
 import java.util.List;
 
+import br.com.aiquefome.aiquefome.api.assembler.RestauranteInputDisassembler;
+import br.com.aiquefome.aiquefome.api.assembler.RestauranteModelAssembler;
+import br.com.aiquefome.aiquefome.api.model.RestauranteModel;
+import br.com.aiquefome.aiquefome.api.model.input.RestauranteInput;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.aiquefome.aiquefome.domain.models.Restaurante;
 import br.com.aiquefome.aiquefome.domain.services.CadastroRestauranteService;
-import lombok.RequiredArgsConstructor;
+
+import javax.validation.Valid;
 
 @RequiredArgsConstructor
 @RequestMapping("/restaurantes")
@@ -24,7 +30,9 @@ import lombok.RequiredArgsConstructor;
 public class RestauranteResource {
 
     private final CadastroRestauranteService cadastroRestauranteService;
-    
+    private final RestauranteModelAssembler restauranteModelAssembler;
+    private final RestauranteInputDisassembler restauranteInputDisassembler;
+
     @GetMapping
     public List<Restaurante> retrieveAllCozinha(){
     
@@ -32,7 +40,8 @@ public class RestauranteResource {
     }
 
     @PostMapping
-    public ResponseEntity<Restaurante> save(@RequestBody Restaurante restaurante){
+    public ResponseEntity<Restaurante> save(@RequestBody @Valid RestauranteInput restauranteInput){
+        Restaurante restaurante = restauranteInputDisassembler.toDomain(restauranteInput);
 
         Restaurante restauranteSave = cadastroRestauranteService.salvar(restaurante);
         return new ResponseEntity<>(restauranteSave, HttpStatus.CREATED);
@@ -46,9 +55,11 @@ public class RestauranteResource {
     }
 
     @GetMapping("/{id}")
-    public Restaurante retrieveRestaurante(@PathVariable Long id){
+    public RestauranteModel retrieveRestaurante(@PathVariable Long id){
 
-        return cadastroRestauranteService.buscarOrFalhar(id);
+        Restaurante restaurante = cadastroRestauranteService.buscarOrFalhar(id);
+
+        return restauranteModelAssembler.toModel(restaurante);
     }
 
     @PutMapping("/{id}")

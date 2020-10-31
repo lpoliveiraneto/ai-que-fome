@@ -1,11 +1,18 @@
+set foreign_key_checks = 0;
+
 delete  from usuario;
 delete from cozinha;
 delete from restaurante;
 delete from estado;
 delete from cidade;
 
+set foreign_key_checks = 1;
+
 alter table usuario auto_increment = 1;
 alter table cozinha auto_increment = 1;
+alter table restaurante auto_increment = 1;
+alter table estado auto_increment = 1;
+alter table cidade auto_increment = 1;
 
 insert into usuario(nome, email, senha) values ('neto', 'leonidespires@gmail.com', 'neto123');
 insert into usuario(nome, email, senha) values ('joaõ', 'joão.p@gmail.com', 'joao123');
